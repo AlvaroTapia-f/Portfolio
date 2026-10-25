@@ -1,38 +1,49 @@
 ---
-
+const electives = [
+  "Modelos de Lenguajes · cursando",
+  "Bases de Datos Avanzadas · cursando",
+  "Administración de Proyectos · 8 hs",
+];
 ---
 
-<ol class="relative border-s border-gray-200 dark:border-gray-700">
-  <li class="mb-10 ms-4">
-    <div
-      class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"
+<ol class="relative border-s border-[#27034b]/40 dark:border-[#a18cd1]/30">
+  <li class="mb-10 ms-5">
+    <span
+      class="absolute -start-[6.5px] mt-1.5 size-3 rounded-full border border-white bg-[#8f5cff] dark:border-[#12071b] dark:bg-[#a18cd1]"
+    ></span>
+    <time class="text-xs uppercase tracking-wide text-[#1a0e2e]/55 dark:text-[#f1e7ff]/55"
+      >2022 – actualidad</time
     >
-    </div>
-    <time
-      class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
-      >2016 - 2021</time
-    >
-    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-      Técnico electromecánico.
+    <h3 class="pt-1 text-lg font-semibold">
+      Ingeniería en Sistemas de Información
     </h3>
-    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-      Escuela Ingeniero Pablo Nogués - Mendoza, Argentina.
+    <p class="text-sm text-[#1a0e2e]/75 dark:text-[#f1e7ff]/75">
+      Universidad Tecnológica Nacional — Facultad Regional Mendoza
     </p>
-    <li class="mb-10 ms-4">
-      <div
-        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"
-      >
-      </div>
-      <time
-        class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
-        >2022 - Actualidad
-      </time>
-      <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-        Ingeniería en sistemas de información.
-      </h3>
-      <p class="text-base font-normal text-gray-500 dark:text-gray-400">
-        Universidad tecnológica nacional - Facultad Regional Mendoza.
-      </p>
-    </li>
+    <p class="pt-2 text-sm">
+      27 de 36 materias aprobadas · cursando 4.º y 5.º año.
+    </p>
+    <ul class="flex flex-wrap gap-2 pt-3">
+      {
+        electives.map((elective) => (
+          <li class="rounded-full border border-[#8f5cff]/30 bg-[#8f5cff]/10 px-2.5 py-1 text-xs text-[#5b21b6] dark:text-[#c4b5fd]">
+            {elective}
+          </li>
+        ))
+      }
+    </ul>
+  </li>
+
+  <li class="ms-5">
+    <span
+      class="absolute -start-[6.5px] mt-1.5 size-3 rounded-full border border-white bg-[#8f5cff] dark:border-[#12071b] dark:bg-[#a18cd1]"
+    ></span>
+    <time class="text-xs uppercase tracking-wide text-[#1a0e2e]/55 dark:text-[#f1e7ff]/55"
+      >2016 – 2021</time
+    >
+    <h3 class="pt-1 text-lg font-semibold">Técnico Electromecánico</h3>
+    <p class="text-sm text-[#1a0e2e]/75 dark:text-[#f1e7ff]/75">
+      Escuela Ingeniero Pablo Nogués — Mendoza, Argentina
+    </p>
   </li>
 </ol>

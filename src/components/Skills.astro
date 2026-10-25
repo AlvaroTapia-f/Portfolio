@@ -15,130 +15,113 @@ import VSCodeIcon from "./icons/VSCode.astro";
 import PostmanIcon from "./icons/Postman.astro";
 import SwaggerIcon from "./icons/Swagger.astro";
 import AstroIcon from "./icons/AstroIcon.astro";
-const skills = {
-  HTML: {
-    name: "HTML",
-    icon: HTML,
-    section: "Frontend",
-  },
-  CSS: {
-    name: "CSS",
-    icon: CSS,
-    section: "Frontend",
-  },
-  JavaScript: {
-    name: "JavaScript",
-    icon: JavaScript,
-    section: "Frontend",
-  },
-  Java: {
-    name: "Java",
-    icon: Java,
-    section: "Backend",
-  },
-  Spring: {
-    name: "Spring",
-    icon: Spring,
-    section: "Backend",
-  },
-  SQL: {
-    name: "SQL",
-    icon: Sql,
-    section: "Backend",
-  },
-  React: {
-    name: "React",
-    icon: ReactIcon,
-    section: "Frontend",
-  },
-  TypeScript: {
-    name: "TypeScript",
-    icon: TypeScriptIcon,
-    section: "Frontend",
-  },
-  NodeJS: {
-    name: "Node.js",
-    icon: NodejsIcon,
-    section: "Backend",
-  },
-  ExpressJS: {
-    name: "Express.js",
-    icon: ExpressIcon,
-    section: "Backend",
-  },
-  MongoDB: {
-    name: "MongoDB",
-    icon: MongoDBIcon,
-    section: "Aprendiendo",
-  },
-  Git: {
-    name: "Git",
-    icon: GitIcon,
-    section: "Herramientas",
-  },
-  VSCode: {
-    name: "Visual Studio Code",
-    icon: VSCodeIcon,
-    section: "Herramientas",
-  },
-  Postman: {
-    name: "Postman",
-    icon: PostmanIcon,
-    section: "Herramientas",
-  },
-  Swagger: {
-    name: "Swagger",
-    icon: SwaggerIcon,
-    section: "Herramientas",
-  },
-  Astro: {
-    name: "Astro",
-    icon: AstroIcon,
-    section: "Aprendiendo",
-  },
-};
 
-const sections = [
-  { key: "Frontend", label: "Frontend" },
-  { key: "Backend", label: "Backend" },
-  { key: "Aprendiendo", label: "Aprendiendo" },
-  { key: "Herramientas", label: "Herramientas" },
+const groups = [
+  {
+    label: "IA y agentes",
+    accent: "text-orange-300",
+    wide: true,
+    items: [
+      { name: "OpenCode" },
+      { name: "Pi" },
+      { name: "Antigravity" },
+      { name: "Hermes" },
+      { name: "SDD" },
+      { name: "ODD" },
+      { name: "Orquestador + subagentes" },
+      { name: "Slices verificables" },
+      { name: "Gestión de contexto" },
+      { name: "Costo por feature" },
+      { name: "TDD" },
+      { name: "Verificación independiente" },
+      { name: "Guardrails" },
+    ],
+  },
+  {
+    label: "Lenguajes",
+    accent: "text-cyan-200",
+    items: [
+      { name: "TypeScript", icon: TypeScriptIcon },
+      { name: "JavaScript", icon: JavaScript },
+      { name: "Java", icon: Java },
+      { name: "Python" },
+      { name: "SQL", icon: Sql },
+    ],
+  },
+  {
+    label: "Backend y APIs",
+    accent: "text-cyan-200",
+    items: [
+      { name: "Node.js", icon: NodejsIcon },
+      { name: "Express", icon: ExpressIcon },
+      { name: "Spring Boot", icon: Spring },
+      { name: "APIs REST" },
+      { name: "Postman", icon: PostmanIcon },
+      { name: "Swagger UI", icon: SwaggerIcon },
+    ],
+  },
+  {
+    label: "Frontend",
+    accent: "text-cyan-200",
+    items: [
+      { name: "Svelte" },
+      { name: "React", icon: ReactIcon },
+      { name: "Astro", icon: AstroIcon },
+      { name: "HTML", icon: HTML },
+      { name: "CSS", icon: CSS },
+      { name: "Tailwind CSS" },
+    ],
+  },
+  {
+    label: "Datos",
+    accent: "text-blue-300",
+    items: [
+      { name: "PostgreSQL" },
+      { name: "Supabase" },
+      { name: "MongoDB", icon: MongoDBIcon },
+      { name: "Row Level Security" },
+      { name: "RPC" },
+      { name: "Consultas SQL" },
+    ],
+  },
+  {
+    label: "DevOps y herramientas",
+    accent: "text-blue-300",
+    wide: true,
+    items: [
+      { name: "Git", icon: GitIcon },
+      { name: "GitHub Actions" },
+      { name: "Docker" },
+      { name: "Docker Compose" },
+      { name: "Linux (Arch)" },
+      { name: "Vercel" },
+      { name: "Vitest" },
+      { name: "Playwright" },
+      { name: "VS Code", icon: VSCodeIcon },
+    ],
+  },
 ];
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
   {
-    sections.map(({ key, label }) => (
-      <div class="bg-[#18192a]/70 border border-[#27034b] rounded-2xl p-6 shadow-xl flex flex-col transition hover:scale-[1.02] hover:border-[#a18cd1]/60">
-        <h3
-          class={`text-2xl font-bold mb-6 tracking-wide ${
-            key === "Aprendiendo"
-              ? "text-orange-300"
-              : key === "Herramientas"
-                ? "text-blue-300"
-                : "text-cyan-200"
-          }`}
-        >
-          {label}
+    groups.map((group) => (
+      <div
+        class={`bg-[#18192a] border border-[#a18cd1]/25 rounded-2xl p-5 shadow-xl transition hover:border-[#a18cd1]/60 ${
+          group.wide ? "md:col-span-2" : ""
+        }`}
+      >
+        <h3 class={`mb-4 text-lg font-bold tracking-wide ${group.accent}`}>
+          {group.label}
         </h3>
-        <div class="flex flex-wrap gap-6 justify-center">
-          {Object.values(skills)
-            .filter((skill) =>
-              Array.isArray(skill.section)
-                ? skill.section.includes(key)
-                : skill.section === key
-            )
-            .map((skill) => (
-              <div class="flex flex-col items-center w-24 group">
-                <div class="rounded-xl bg-[#27034b]/40 p-3 mb-2 shadow-md transition group-hover:bg-[#a18cd1]/20 group-hover:scale-110">
-                  <skill.icon class="w-12 h-12" />
-                </div>
-                <span class="text-sm text-center text-[#f1e7ff] opacity-90">
-                  {skill.name}
-                </span>
-              </div>
-            ))}
-        </div>
+        <ul class="flex flex-wrap gap-2">
+          {group.items.map((item) => (
+            <li class="flex items-center gap-1.5 rounded-lg border border-[#a18cd1]/25 bg-[#27034b]/40 px-2.5 py-1.5 text-xs text-[#f1e7ff]/90 transition hover:scale-105 hover:border-[#a18cd1]/60">
+              {item.icon && <item.icon class="size-4" />}
+              <span>{item.name}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     ))
   }

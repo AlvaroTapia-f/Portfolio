@@ -5,13 +5,31 @@ import "../styles/global.css";
 import "@fontsource-variable/roboto-mono";
 ---
 
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Portfolio Alvaro Tapia</title>
+    <meta
+      name="description"
+      content="Alvaro Tapia — Desarrollador Full Stack Jr. especializado en desarrollo asistido por IA: agentes, contexto, costo y verificación."
+    />
+    <meta name="author" content="Alvaro Tapia" />
+    <meta name="theme-color" content="#12071b" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta
+      property="og:title"
+      content="Alvaro Tapia — Desarrollador Full Stack Jr."
+    />
+    <meta
+      property="og:description"
+      content="Construyo software con agentes de IA: especifico, dirijo y valido. Proyectos: agy-bridge y Álbum de Películas."
+    />
+    <meta property="og:image" content="/projects/album-grid.webp" />
+    <link rel="canonical" href="https://alvarotapia.netlify.app/" />
+    <title>Alvaro Tapia — Desarrollador Full Stack Jr.</title>
   </head>
   <body
     class="bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] text-[#1a0e2e] dark:text-[#f1e7ff] dark:bg-[#000000] dark:bg-[radial-gradient(#ffffff33_1px,#12071b_1px)] dark:bg-[size:20px_20px]"
@@ -25,9 +43,11 @@ import "@fontsource-variable/roboto-mono";
 <style is:global>
   :root {
     color-scheme: light dark;
+    scroll-behavior: smooth;
   }
   html {
     font-family: "Roboto Mono Variable", monospace;
+    scroll-padding-top: 2rem;
   }
   body {
     display: flex;
@@ -36,5 +56,8 @@ import "@fontsource-variable/roboto-mono";
     min-height: 100dvh;
     margin: 0 auto;
     padding: 0 2rem;
+  }
+  section {
+    scroll-margin-top: 2rem;
   }
 </style>

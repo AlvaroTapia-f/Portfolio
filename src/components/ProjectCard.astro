@@ -1,69 +1,145 @@
 ---
-const { title, srcImg, description, link, gitHub, tags } = Astro.props;
 import GitHubIcon from "./icons/GitHubIcon.astro";
 import LaptopIcon from "./icons/LaptopIcon.astro";
+import AgyBridgeDiagram from "./AgyBridgeDiagram.astro";
+
+const {
+  title,
+  subtitle,
+  description,
+  bullets = [],
+  metrics = [],
+  tags = [],
+  github,
+  demo,
+  note,
+  images = [],
+  diagram = false,
+  flip = false,
+} = Astro.props;
+
+const [cover, ...gallery] = images;
+const linkClass =
+  "flex gap-2 items-center text-xs md:text-sm bg-white/50 border border-gray-500/60 hover:bg-gray-100 dark:bg-gray-800/70 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 rounded-lg px-4 py-2 transition";
 ---
 
-<div
-  class="py-4 flex flex-col items-center rounded-lg gap-2 md:flex-row md:justify-around md:items-center md:max-w-full group"
+<article
+  class="group grid items-start gap-6 border-b border-[#a18cd1]/15 py-8 last:border-0 md:grid-cols-2 md:gap-8"
 >
-  <div
-    class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50 md:max-w-[450px]"
-  >
-    <img
-      class="object-cover object-top transition duration-500 md:scale-110 md:group-hover:scale-105"
-      src={srcImg}
-      alt="{title} project image"
-    />
-  </div>
-  <div
-    class="pl-6 flex flex-col justify-center leading-normal md:max-w-[500px]"
-  >
-    <h5
-      class="pb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-    >
-      {title}
-    </h5>
-    <div class="flex flex-wrap gap-2">
+  <div class={`flex flex-col gap-4 ${flip ? "md:order-2" : ""}`}>
+    <div>
+      <p
+        class="text-[0.65rem] uppercase tracking-[0.18em] text-[#7c3aed] dark:text-[#a18cd1]"
+      >
+        {subtitle}
+      </p>
+      <h3 class="pt-1 text-2xl font-bold tracking-tight">{title}</h3>
+    </div>
+
+    <p class="text-sm leading-relaxed">{description}</p>
+
+    <ul class="flex flex-col gap-2 text-sm leading-relaxed">
       {
-        tags.map((tag) => (
-          <span class="flex items-center gap-1 bg-purple-100 text-purple-800/50 text-sm font-medium me-2 px-1.5 py-0.5 rounded-full dark:bg-purple-900/70 dark:text-purple-300">
-            <tag.icon class="inline-block w-3 h-3 ms-1" />
-            {tag.name}
-          </span>
+        bullets.map((bullet) => (
+          <li class="flex gap-2">
+            <span class="text-[#8f5cff] dark:text-[#a18cd1]">▸</span>
+            <span class="text-[#1a0e2e]/85 dark:text-[#f1e7ff]/85">
+              {bullet}
+            </span>
+          </li>
         ))
       }
-      <p class="pb-3 font-normal text-gray-700 dark:text-gray-400">
-        {description}
-      </p>
+    </ul>
+
+    {
+      metrics.length > 0 && (
+        <dl class="grid grid-cols-3 gap-2 border-y border-[#a18cd1]/20 py-3">
+          {metrics.map((metric) => (
+            <div class="flex flex-col">
+              <dt class="order-2 text-[0.6rem] uppercase leading-tight tracking-wide text-[#1a0e2e]/55 dark:text-[#f1e7ff]/55">
+                {metric.label}
+              </dt>
+              <dd class="order-1 text-xl font-bold text-[#7c3aed] dark:text-cyan-200">
+                {metric.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      )
+    }
+
+    <ul class="flex flex-wrap gap-2">
       {
-        gitHub && (
-          <a
-            href={gitHub}
-            target="_blank"
-            class="flex gap-2 items-center text-gray-900 bg-white/50 border border-gray-500 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800/70 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          >
-            <span>
-              <GitHubIcon class="size-5" />
-            </span>
-            Code
+        tags.map((tag) => (
+          <li class="rounded-full bg-purple-100 text-purple-800/80 text-[0.7rem] font-medium px-2 py-0.5 dark:bg-purple-900/70 dark:text-purple-300">
+            {tag}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="flex flex-wrap items-center gap-2">
+      {
+        github && (
+          <a href={github} target="_blank" rel="noreferrer" class={linkClass}>
+            <GitHubIcon class="size-4" />
+            Código
           </a>
         )
       }
       {
-        link && (
-          <a
-            href={link}
-            target="_blank"
-            class="flex gap-2 items-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800/70 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          >
-            <span>
-              <LaptopIcon class="size-6" />
-            </span>
-            Preview
+        demo && (
+          <a href={demo} target="_blank" rel="noreferrer" class={linkClass}>
+            <LaptopIcon class="size-4" />
+            Ver en producción
           </a>
+        )
+      }
+      {
+        note && (
+          <span class="text-[0.7rem] text-[#1a0e2e]/55 dark:text-[#f1e7ff]/55">
+            {note}
+          </span>
         )
       }
     </div>
   </div>
-</div>
+
+  <div class={`w-full ${flip ? "md:order-1" : ""}`}>
+    {
+      diagram ? (
+        <AgyBridgeDiagram />
+      ) : (
+        <div class="flex flex-col gap-2">
+          <a href={demo || cover} target="_blank" rel="noreferrer">
+            <img
+              src={cover}
+              alt={`Captura de ${title}`}
+              loading="lazy"
+              class="aspect-[4/3] w-full rounded-xl border border-[#27034b]/60 object-cover object-top shadow-xl transition duration-500 group-hover:-translate-y-1 group-hover:shadow-2xl"
+            />
+          </a>
+          {gallery.length > 0 && (
+            <div class="grid grid-cols-3 gap-2">
+              {gallery.map((image) => (
+                <a
+                  href={demo || image}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="overflow-hidden rounded-lg border border-[#27034b]/60"
+                >
+                  <img
+                    src={image}
+                    alt={`Captura de ${title}`}
+                    loading="lazy"
+                    class="h-20 w-full object-cover object-top opacity-90 transition hover:scale-105 hover:opacity-100 md:h-24"
+                  />
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      )
+    }
+  </div>
+</article>

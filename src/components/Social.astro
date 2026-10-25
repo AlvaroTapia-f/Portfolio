@@ -2,11 +2,12 @@
 import GitHubIcon from "./icons/GitHubIcon.astro";
 import GmailIcon from "./icons/GmailIcon.astro";
 import LinkedinIcon from "./icons/LinkedinIcon.astro";
+import DownloadIcon from "./icons/Download.astro";
 import SocialIndividual from "./SocialIndividual.astro";
 ---
 
 <nav>
-  <ul class="flex items-center gap-2 py-2">
+  <ul class="flex flex-wrap items-center gap-2 py-2">
     <li>
       <SocialIndividual
         href="https://www.linkedin.com/in/alvaro-tapia-123414340/"
@@ -26,6 +27,16 @@ import SocialIndividual from "./SocialIndividual.astro";
         <GmailIcon class="size-4" />
         Contacto
       </SocialIndividual>
+    </li>
+    <li>
+      <a
+        href="/Alvaro_Tapia_CV.pdf"
+        download="Alvaro_Tapia_CV.pdf"
+        class="bg-[#8f5cff]/10 dark:bg-[#a18cd1]/15 h-auto rounded-full flex justify-center items-center gap-2 border border-[#8f5cff]/40 dark:border-[#a18cd1]/40 py-1.5 px-2 text-[#5b21b6] dark:text-[#c4b5fd] hover:scale-110 hover:bg-[#8f5cff]/20 dark:hover:bg-[#a18cd1]/25 transition"
+      >
+        <DownloadIcon class="size-4" />
+        CV
+      </a>
     </li>
   </ul>
 </nav>

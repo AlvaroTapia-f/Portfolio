@@ -6,18 +6,19 @@ import Projects from "../components/Projects.astro";
 import Social from "../components/Social.astro";
 import Layout from "../layouts/Layout.astro";
 import AboutMe from "../components/AboutMe.astro";
+import AppliedAI from "../components/AppliedAI.astro";
 import Skills from "../components/Skills.astro";
 ---
 
 <Layout>
   <section
-    id=""
-    class="flex flex-col justify-center gap-2 min-h-[400px] w-full p-2 md:w-[740px] md:h-[500px] md:px-0 lg:w-[900px] lg:gap-4"
+    id="Inicio"
+    class="flex flex-col justify-center gap-3 min-h-[460px] w-full p-2 md:w-[740px] md:h-[540px] md:px-0 lg:w-[900px] lg:gap-4"
   >
     <div class="flex items-center gap-4">
       <img
-        src="/FotoCarnetActual.jpg"
-        alt="Alvaro"
+        src="/FotoCarnetActual.webp"
+        alt="Alvaro Tapia"
         class="rounded-full size-28 p-2"
       />
       <a
@@ -28,44 +29,63 @@ import Skills from "../components/Skills.astro";
         <Badge />
       </a>
     </div>
+    <p
+      class="text-[0.7rem] uppercase tracking-[0.18em] text-[#7c3aed] dark:text-[#c4b5fd] md:text-xs"
+    >
+      Desarrollador Full Stack Jr. · Desarrollo asistido por IA
+    </p>
     <h1
-      class="text-[#27034b] dark:text-[#f1e7ff] flex items-center gap-2 text-4xl font-bold pb-2"
+      class="text-[#27034b] dark:text-[#f1e7ff] flex items-center gap-2 text-4xl font-bold pb-1 md:text-5xl"
     >
       Hola, soy Alvaro
     </h1>
-    <p class="text-pretty">
-      Estudiante de ingeniería en sistemas de información y programador full
-      stack. Me gusta aprender nuevas tecnologías y mejorar mis habilidades.
-      Disfruto los desafios y aplicar soluciones creativas a diversos problemas.
+    <p class="text-pretty max-w-[760px]">
+      Estudiante avanzado de Ingeniería en Sistemas de Información (UTN-FRM) y
+      desarrollador full stack. Diseño, dirijo y verifico el trabajo de agentes
+      de IA: elijo el harness y el modelo según la tarea, acoto el contexto y
+      mido el costo por feature. Busco mi primera posición full time o part
+      time, remoto o en Mendoza.
     </p>
     <Social />
   </section>
   <section id="Proyectos" class="py-4">
     <div class="flex items-center gap-2 pb-4">
       <CodeIcon class="size-8" />
-      <h1 class="text-3xl font-bold">Proyectos</h1>
+      <h2 class="text-3xl font-bold">Proyectos</h2>
     </div>
     <Projects />
+  </section>
+  <section id="IA" class="py-4">
+    <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 pb-4">
+      <div class="flex items-center gap-2">
+        <CodeIcon class="size-8" />
+        <h2 class="text-3xl font-bold">IA aplicada</h2>
+      </div>
+      <p class="text-sm text-[#1a0e2e]/60 dark:text-[#f1e7ff]/60">
+        Cómo trabajo, no qué herramienta uso
+      </p>
+    </div>
+    <AppliedAI />
+  </section>
+  <section id="Skills" class="py-4">
+    <div class="flex items-center gap-2 pb-4">
+      <CodeIcon class="size-8" />
+      <h2 class="text-3xl font-bold">Skills</h2>
+    </div>
+    <Skills />
   </section>
   <section id="Educacion" class="py-4">
     <div class="flex items-center gap-2 pb-4">
       <CodeIcon class="size-8" />
-      <h1 class="text-3xl font-bold">Educación</h1>
+      <h2 class="text-3xl font-bold">Educación</h2>
     </div>
     <Experience />
   </section>
   <section id="SobreMi" class="py-4">
     <div class="flex items-center gap-2 pb-4">
       <CodeIcon class="size-8" />
-      <h1 class="text-3xl font-bold">Sobre Mi</h1>
+      <h2 class="text-3xl font-bold">Sobre mí</h2>
     </div>
     <AboutMe />
-  </section>
-  <section id="Habilidades" class="py-4">
-    <div class="flex items-center gap-2 pb-4">
-      <CodeIcon class="size-8" />
-      <h1 class="text-3xl font-bold">Skills</h1>
-    </div>
-    <Skills />
   </section>
 </Layout>

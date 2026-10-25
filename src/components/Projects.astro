@@ -1,60 +1,95 @@
 ---
-import HTML from "./icons/HTML.astro";
-import CSS from "./icons/CSS.astro";
-import JavaScript from "./icons/JavaScript.astro";
-import Java from "./icons/Java.astro";
-import Spring from "./icons/Spring.astro";
-import Sql from "./icons/Sql.astro";
-const TAGS = {
-  HTML: {
-    name: "HTML",
-    icon: HTML,
-  },
-  CSS: {
-    name: "CSS",
-    icon: CSS,
-  },
-  JavaScript: {
-    name: "JavaScript",
-    icon: JavaScript,
-  },
-  Java: {
-    name: "Java",
-    icon: Java,
-  },
-  Spring: {
-    name: "Spring",
-    icon: Spring,
-  },
-  SQL: {
-    name: "SQL",
-    icon: Sql,
-  },
-};
+import ProjectCard from "./ProjectCard.astro";
 
 const PROJECTS = [
   {
-    title: "API REST de Gestión Integral de Personas y Libros",
+    title: "agy-bridge",
+    subtitle: "Herramienta open source · TypeScript · Deno · Docker · CI",
     description:
-      "Aplicación backend robusta para la gestión eficiente de personas y libros; ofrece API RESTful documentada, integración con base de datos y arquitectura escalable, ideal como base para sistemas de gestión modernos.",
-    link: "",
-    gitHub: "https://github.com/AlvaroTapia-f/ProyectoApiRestCompleto",
-    srcImg: "./APIRESTExample.webp",
-    tags: [TAGS.Java, TAGS.Spring, TAGS.SQL],
+      "Un puente local que expone los modelos de la suscripción de Google Antigravity como una API compatible con OpenAI, para usarlos desde opencode o cualquier cliente. La regla es innegociable: todo el tráfico hacia Google lo hace el binario oficial agy, en modo headless y con su propia autenticación.",
+    bullets: [
+      "El bridge nunca lee ni copia tokens, no hace OAuth propio y solo escucha en 127.0.0.1.",
+      "Superficie mínima: Bearer token, guard contra DNS rebinding y una sola llamada concurrente para no romper el servicio.",
+      "Tres perfiles de agente (raw, solo lectura y lectura/escritura) y catálogo dual para OpenCode V1 y V2, con la config nativa que corresponde a cada runtime.",
+      "Instalador para Linux con systemd --user y despliegue Docker para Windows; CI con verificación determinista.",
+      "Medí el overhead real por tarea: ~7,4k tokens en solo lectura y ~9,8k en lectura/escritura, contra ~40k por turno en modo stateless. Ese dato decide cuándo conviene delegar.",
+    ],
+    metrics: [
+      { value: "80", label: "tests" },
+      { value: "19/19", label: "smoke checks V2" },
+      { value: "14", label: "modelos expuestos" },
+    ],
+    tags: [
+      "TypeScript",
+      "Deno",
+      "Docker",
+      "GitHub Actions",
+      "Linux",
+      "APIs",
+      "Seguridad",
+    ],
+    github: "https://github.com/AlvaroTapia-f/agy-bridge",
+    note: "MIT · sin demo: es una herramienta local",
+    diagram: true,
+    flip: false,
+  },
+  {
+    title: "Álbum de Películas",
+    subtitle: "Aplicación full stack en producción · SvelteKit · Supabase",
+    description:
+      "Un álbum privado para que una pareja registre lo que ve junto: catálogo tipo libro, reseñas con un puntaje compartido, watchlist, timeline, estadísticas y un juego de Match para decidir qué ver. El desafío no fue la interfaz, fue que los datos de una pareja no puedan verse desde otra.",
+    bullets: [
+      "La autorización vive en la base: RLS de PostgreSQL con una función auth_couple_id() SECURITY DEFINER. Sin backend propio de auth, la anon key puede vivir en el browser.",
+      "La API key de TMDB nunca llega al cliente: las búsquedas pasan por endpoints propios que la agregan del lado servidor.",
+      "Match con Supabase Realtime: las dos pantallas avanzan juntas sobre un estado que persiste en la base y se puede retomar.",
+      "Capas estrictas (rutas → services → componentes), Svelte 5 con runes y PWA instalable con shell offline.",
+      "112 tests entre Vitest y Playwright, 91,8% de cobertura de statements y 82/82 escenarios de spec verificados.",
+    ],
+    metrics: [
+      { value: "112", label: "tests" },
+      { value: "91,8%", label: "cobertura" },
+      { value: "82/82", label: "escenarios" },
+    ],
+    tags: [
+      "SvelteKit",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "Tailwind",
+      "Playwright",
+      "PWA",
+    ],
+    demo: "https://album-peliculas-digital.vercel.app",
+    note: "Código privado · disponible a pedido",
+    images: [
+      "/projects/album-grid.webp",
+      "/projects/album-match.webp",
+      "/projects/album-stats.webp",
+      "/projects/album-add.webp",
+    ],
+    diagram: false,
+    flip: true,
   },
 ];
-import ProjectCard from "./ProjectCard.astro";
 ---
 
-{
-  PROJECTS.map((project) => (
-    <ProjectCard
-      title={project.title}
-      srcImg={project.srcImg}
-      description={project.description}
-      link={project.link}
-      gitHub={project.gitHub}
-      tags={project.tags}
-    />
-  ))
-}
+<div class="flex flex-col">
+  {
+    PROJECTS.map((project) => (
+      <ProjectCard
+        title={project.title}
+        subtitle={project.subtitle}
+        description={project.description}
+        bullets={project.bullets}
+        metrics={project.metrics}
+        tags={project.tags}
+        github={project.github}
+        demo={project.demo}
+        note={project.note}
+        images={project.images}
+        diagram={project.diagram}
+        flip={project.flip}
+      />
+    ))
+  }
+</div>

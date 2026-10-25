@@ -1,0 +1,100 @@
+---
+const practices = [
+  {
+    step: "01",
+    title: "El flujo lo elige la magnitud",
+    body: "No aplico el mismo proceso a todo. Un cambio grande merece spec, diseño y tareas antes de tocar código; en una tarea chica eso es sobreingeniería y quema tokens. Hoy trabajo con un orquestador que, según el caso, resuelve él mismo, propone un plan y después reparte subagentes, o delega directo.",
+  },
+  {
+    step: "02",
+    title: "Slices, no capas a medio terminar",
+    body: "Cada slice es una porción de funcionalidad que se puede probar de punta a punta, con criterio de aceptación explícito y un alcance que entra en un contexto acotado. Prefiero entregar algo verificable antes que tres capas conectadas a medias.",
+  },
+  {
+    step: "03",
+    title: "Contexto mínimo, costo medido",
+    body: "Doy el contexto suficiente y nada más: specs, AGENTS.md y el estado real del repo, en lugar de arrastrar la conversación completa. Mido el costo por feature sumando el gasto de cada fase y lo que se ahorra al no rehacer trabajo.",
+  },
+  {
+    step: "04",
+    title: "El agente propone, yo valido",
+    body: "TDD siempre. Verificación independiente cuando el change es grande. Reviso el diff contra tests y comportamiento antes de aceptar. Pruebo los modelos en tareas reales, no solo en benchmarks, y les asigno rol: orquestador, implementador, verificador o investigador.",
+  },
+];
+
+const harnesses = [
+  {
+    name: "OpenCode",
+    role: "Desarrollo diario con SDD y ODD: orquestador, subagentes y cambios verificados.",
+  },
+  {
+    name: "Pi",
+    role: "Desarrollo diario y flujos con subagentes sobre el mismo repositorio.",
+  },
+  {
+    name: "Antigravity",
+    role: "Documentación y trabajos de la facultad sobre el CLI oficial en modo headless.",
+  },
+  {
+    name: "Hermes",
+    role: "Tareas autónomas: investigación, navegador y operaciones sobre el sistema.",
+  },
+];
+---
+
+<div class="flex flex-col gap-6">
+  <p class="text-pretty max-w-[760px]">
+    Trabajo con agentes de punta a punta: defino el problema, acoto el alcance y
+    escribo el criterio de aceptación. El agente propone; yo decido qué se
+    acepta. El método base lo aprendí de gentle-ai y después lo fui mutando con
+    lo que medí en mis propios proyectos.
+  </p>
+
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    {
+      practices.map((practice) => (
+        <article class="bg-[#18192a] border border-[#a18cd1]/25 rounded-2xl p-5 shadow-xl flex flex-col gap-2 transition hover:border-[#a18cd1]/60">
+          <span class="text-xs tracking-[0.2em] text-[#a18cd1]">
+            {practice.step}
+          </span>
+          <h3 class="text-lg font-bold text-cyan-200">{practice.title}</h3>
+          <p class="text-sm leading-relaxed text-[#f1e7ff]/80">
+            {practice.body}
+          </p>
+        </article>
+      ))
+    }
+  </div>
+
+  <div
+    class="bg-[#18192a] border border-[#a18cd1]/25 rounded-2xl p-5 shadow-xl"
+  >
+    <div class="flex flex-wrap items-baseline justify-between gap-2 pb-4">
+      <h3 class="text-lg font-bold text-orange-300">Harnesses que uso</h3>
+      <p class="text-xs text-[#f1e7ff]/60">
+        Herramienta elegida por tarea, no por costumbre
+      </p>
+    </div>
+    <ul class="grid grid-cols-1 gap-3 md:grid-cols-2">
+      {
+        harnesses.map((harness) => (
+          <li class="flex flex-col gap-1 border-l-2 border-[#a18cd1]/40 pl-3">
+            <span class="text-sm font-semibold text-[#f1e7ff]">
+              {harness.name}
+            </span>
+            <span class="text-xs leading-relaxed text-[#f1e7ff]/70">
+              {harness.role}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <p class="text-sm text-[#1a0e2e]/70 dark:text-[#f1e7ff]/70">
+    No elijo modelos por leaderboard: los pruebo en tareas reales y decido
+    cuál conviene para orquestar, cuál para escribir código, cuál para
+    verificar y cuál para investigar. También curso Modelos de Lenguajes en la
+    facultad, así que la intuición viene con el mecanismo detrás.
+  </p>
+</div>

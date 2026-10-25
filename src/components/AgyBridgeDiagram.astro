@@ -1,0 +1,90 @@
+---
+const boxes = [
+  {
+    name: "cliente",
+    detail: "opencode u otro cliente OpenAI",
+    sub: "V1 o V2",
+  },
+  {
+    name: "agy-bridge :7421",
+    detail: "API compatible + SSE",
+    sub: "loopback, Bearer, Host guard",
+  },
+  {
+    name: "agy CLI",
+    detail: "headless · stream-json",
+    sub: "1 llamada por vez",
+  },
+];
+---
+
+<div
+  class="rounded-2xl border border-[#a18cd1]/25 bg-[#18192a] p-5 shadow-xl"
+>
+  <div class="flex items-baseline justify-between gap-2 pb-4">
+    <p class="text-xs uppercase tracking-[0.18em] text-[#a18cd1]">
+      Arquitectura
+    </p>
+    <p class="hidden text-[0.65rem] text-[#f1e7ff]/50 sm:block">todo el tráfico lo hace el CLI</p>
+  </div>
+
+  <div class="flex flex-col items-stretch gap-2 md:flex-row md:items-stretch">
+    {
+      boxes.map((box, index) => (
+        <>
+          <div class="flex-1 rounded-xl border border-[#a18cd1]/30 bg-[#27034b]/40 px-3 py-3 text-center">
+            <p class="text-sm font-semibold text-[#f1e7ff]">{box.name}</p>
+            <p class="pt-1 text-[0.65rem] leading-snug text-[#f1e7ff]/70">
+              {box.detail}
+            </p>
+            <p class="text-[0.6rem] leading-snug text-[#a18cd1]">{box.sub}</p>
+          </div>
+          {index < boxes.length - 1 && (
+            <>
+              <span class="hidden items-center justify-center text-lg text-[#a18cd1] md:flex">
+                →
+              </span>
+              <span class="flex justify-center text-lg text-[#a18cd1] md:hidden">
+                ↓
+              </span>
+            </>
+          )}
+        </>
+      ))
+    }
+  </div>
+
+  <div class="mt-2 flex flex-col items-center gap-1 md:items-end md:pr-8">
+    <span class="text-lg text-[#a18cd1]">↓</span>
+    <div
+      class="rounded-lg border border-dashed border-[#a18cd1]/40 px-3 py-2 text-center"
+    >
+      <p class="text-[0.7rem] text-[#f1e7ff]/80">
+        cloudcode-pa.googleapis.com
+      </p>
+      <p class="text-[0.6rem] text-[#f1e7ff]/50">
+        autenticación del propio CLI, intacta
+      </p>
+    </div>
+  </div>
+
+  <ul
+    class="mt-4 flex flex-wrap gap-1.5 border-t border-[#a18cd1]/20 pt-3 text-[0.6rem] text-[#f1e7ff]/70"
+  >
+    <li class="rounded-full border border-[#a18cd1]/30 px-2 py-1">
+      127.0.0.1 only
+    </li>
+    <li class="rounded-full border border-[#a18cd1]/30 px-2 py-1">
+      Bearer token
+    </li>
+    <li class="rounded-full border border-[#a18cd1]/30 px-2 py-1">
+      anti DNS-rebinding
+    </li>
+    <li class="rounded-full border border-[#a18cd1]/30 px-2 py-1">
+      MAX_CONCURRENT=1
+    </li>
+    <li class="rounded-full border border-[#a18cd1]/30 px-2 py-1">
+      sin leer credenciales
+    </li>
+  </ul>
+</div>
